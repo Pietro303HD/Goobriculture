@@ -3,8 +3,11 @@ package agriculture;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.math.geom.Geometry;
+import arc.math.geom.Vec2;
 import arc.util.*;
 import mindustry.*;
+import mindustry.graphics.Drawf;
 import mindustry.ui.*;
 
 public class AgriUtils {
@@ -57,6 +60,30 @@ public class AgriUtils {
             regions[i] = reg;
         }
         return regions;
+    }
+
+    public static void dashSquare(float x, float y, float w, float h, Color color){
+        Drawf.dashLine(color, x + w/2, y - h/2, x + w/2, y + h/2);
+        Drawf.dashLine(color, x - w/2, y - h/2, x - w/2, y + h/2);
+
+        Drawf.dashLine(color, x - w/2, y + h/2, x + w/2, y + h/2);
+        Drawf.dashLine(color, x - w/2, y - h/2, x + w/2, y - h/2);
+    }
+
+    public static void lightSquare(float x, float y, float radius, Color center, Color edge){
+        float centerf = center.toFloatBits(), edgef = edge.toFloatBits();
+
+        float px = Geometry.d8edge[0].x * radius + x;
+        float py = Geometry.d8edge[0].y * radius + y;
+        float px1 = Geometry.d8edge[1].x * radius + x;
+        float py1 = Geometry.d8edge[1].y * radius + y;
+        float px2 = Geometry.d8edge[2].x * radius + x;
+        float py2 = Geometry.d8edge[2].y * radius + y;
+        float px3 = Geometry.d8edge[3].x * radius + x;
+        float py3 = Geometry.d8edge[3].y * radius + y;
+
+        Fill.quad(x, y, centerf, px, py, edgef, px1, py1, edgef, px2, py2, edgef);
+        Fill.quad(x, y, centerf, px2, py2, edgef, px3, py3, edgef, px, py, edgef);
     }
 
     public static void drawText(String text, float x, float y, Color color){

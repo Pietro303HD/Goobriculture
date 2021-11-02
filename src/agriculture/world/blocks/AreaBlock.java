@@ -22,6 +22,12 @@ public class AreaBlock extends Block {
         clipSize = range;
     }
 
+    @Override
+    public void drawPlace(int x, int y, int rotation, boolean valid) {
+        super.drawPlace(x, y, rotation, valid);
+        Drawf.dashCircle(x * 8, y * 8, range, radiusColor);
+    }
+
     public class AreaEffectBuild extends Building {
         @Override
         public void updateTile() {

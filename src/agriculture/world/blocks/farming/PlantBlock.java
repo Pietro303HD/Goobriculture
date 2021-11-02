@@ -19,7 +19,7 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 
 public class PlantBlock extends Block {
-    public float dryRate = 0.02f;
+    public float dryRate = 0.01f;
     public TextureRegion soilRegion, wetSoilRegion;
 
     public PlantBlock(String name){
@@ -104,7 +104,7 @@ public class PlantBlock extends Block {
             }).growX().padTop(5f);
         }
 
-        /* DEBUG
+        // DEBUG
         @Override
         public void buildConfiguration(Table table) {
             super.buildConfiguration(table);
@@ -133,7 +133,7 @@ public class PlantBlock extends Block {
                 });
             });
         }
-        */
+
 
         @Override
         public boolean onConfigureTileTapped(Building other) {
