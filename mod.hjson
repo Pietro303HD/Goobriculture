@@ -1,10 +1,9 @@
-displayName: "Agriculture"
+displayName: "Goobriculture"
 
-name: "agriculture"
+name: "goobriculture"
 
 author: "Goober"
 
-#the fully qualified main class of the mod
 main: "agriculture.Agriculture"
 
 version: 1.0

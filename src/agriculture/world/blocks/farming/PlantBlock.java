@@ -13,6 +13,7 @@ import arc.util.io.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.gen.*;
+import mindustry.logic.LAccess;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
