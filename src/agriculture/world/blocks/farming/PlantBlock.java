@@ -104,7 +104,7 @@ public class PlantBlock extends Block {
             }).growX().padTop(5f);
         }
 
-        // DEBUG
+        /* DEBUG
         @Override
         public void buildConfiguration(Table table) {
             super.buildConfiguration(table);
@@ -133,6 +133,7 @@ public class PlantBlock extends Block {
                 });
             });
         }
+         */
 
 
         @Override

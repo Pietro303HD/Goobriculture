@@ -9,10 +9,14 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
+import arc.util.io.Reads;
+import arc.util.io.Writes;
 import mindustry.content.*;
+import mindustry.game.Team;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import mindustry.world.Tile;
 import mindustry.world.meta.*;
 
 public class Harvester extends AreaBlock {
@@ -56,9 +60,16 @@ public class Harvester extends AreaBlock {
     public class HarvesterBuild extends AreaEffectBuild {
         public float progress = 0f;
         public float harvestCooldown = 0f;
-        public float headX = x, headY = y;
+        public float headX, headY;
         public Seq<PlantBlock.PlantBuild> builds = new Seq<>();
         public PlantBlock.PlantBuild current;
+
+        @Override
+        public void created() {
+            super.created();
+            headX = x;
+            headY = y;
+        }
 
         @Override
         public void updateTile() {
@@ -91,10 +102,10 @@ public class Harvester extends AreaBlock {
                 current = builds.pop();
             }else if(harvestCooldown == 0){
                 if(!Mathf.within(headX, headY, current.x, current.y, 1f)){
-                    headX = Mathf.lerpDelta(headX, current.x, 0.1f);
-                    headY = Mathf.lerpDelta(headY, current.y, 0.1f);
+                    headX = Mathf.approach(headX, current.x, Time.delta);
+                    headY = Mathf.approach(headY, current.y, Time.delta);
                 }else{
-                    if(current.plant.type == null){
+                    if(!current.isAdded() || current.plant.type == null){
                         current = null;
                         return;
                     }
@@ -183,6 +194,32 @@ public class Harvester extends AreaBlock {
         public void drawConfigure() {
             super.drawConfigure();
             drawSelect();
+        }
+
+        @Override
+        public void read(Reads read, byte revision) {
+            super.read(read, revision);
+
+            if(revision >= 2){
+                progress = read.f();
+                harvestCooldown = read.f();
+                headX = read.f();
+                headY = read.f();
+            }
+        }
+
+        @Override
+        public void write(Writes write) {
+            super.write(write);
+            write.f(progress);
+            write.f(harvestCooldown);
+            write.f(headX);
+            write.f(headY);
+        }
+
+        @Override
+        public byte version() {
+            return 2;
         }
     }
 }
