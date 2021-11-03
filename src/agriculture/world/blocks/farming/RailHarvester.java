@@ -1,18 +1,15 @@
 package agriculture.world.blocks.farming;
 
-import agriculture.world.blocks.ConnectedBlock;
-import arc.Core;
+import agriculture.world.blocks.*;
+import arc.*;
 import arc.graphics.g2d.*;
-import arc.math.Interp;
-import arc.math.Mathf;
-import arc.util.Log;
-import arc.util.Time;
-import mindustry.Vars;
-import mindustry.content.Fx;
-import mindustry.gen.Building;
-import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
-import mindustry.type.Item;
+import arc.math.*;
+import arc.util.*;
+import mindustry.*;
+import mindustry.content.*;
+import mindustry.gen.*;
+import mindustry.graphics.*;
+import mindustry.type.*;
 
 public class RailHarvester extends ConnectedBlock {
     public TextureRegion railRegion, headRegion;
@@ -116,15 +113,10 @@ public class RailHarvester extends ConnectedBlock {
 
                 Building b = Vars.world.buildWorld(headX, headY);
                 if(b instanceof PlantBlock.PlantBuild p && Mathf.within(headX, headY, b.x, b.y, 4f)){
-                    Log.info("found plant");
                     if(p.isAdded() && p.plant.type != null){
                         Item item = p.plant.type.item;
-                        Log.info("harvest?");
-                        Log.info(items.get(item) + p.plant.produce());
-                        Log.info(block.itemCapacity);
-                        Log.info(items.get(item) + p.plant.produce() < block.itemCapacity);
+
                         if(items.get(item) + p.plant.produce() < block.itemCapacity){
-                            Log.info("harvesting");
                             int amount = p.removeStack(item, p.plant.produce());
 
                             float ex = p.x, ey = p.y;
