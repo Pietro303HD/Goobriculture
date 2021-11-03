@@ -65,6 +65,12 @@ public class PlantBlock extends Block {
     }
 
     @Override
+    public void setBars() {
+        super.setBars();
+        bars.remove("items");
+    }
+
+    @Override
     public void setStats() {
         super.setStats();
         stats.remove(Stat.itemCapacity);
@@ -103,8 +109,6 @@ public class PlantBlock extends Block {
                 t.add(new PlantInfoTable(plant)).grow().padTop(5f);
             }).growX().padTop(5f);
         }
-
-        /* DEBUG
         @Override
         public void buildConfiguration(Table table) {
             super.buildConfiguration(table);
@@ -133,7 +137,6 @@ public class PlantBlock extends Block {
                 });
             });
         }
-         */
 
 
         @Override
