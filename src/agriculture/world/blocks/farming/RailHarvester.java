@@ -147,7 +147,7 @@ public class RailHarvester extends ConnectedBlock {
         @Override
         public double sense(LAccess sensor) {
             if(sensor == LAccess.totalItems){
-                return items.size;
+                return (double) items.size;
             }
             return super.sense(sensor);
         }
