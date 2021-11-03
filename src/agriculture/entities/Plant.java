@@ -72,6 +72,7 @@ public class Plant {
     }
 
     public boolean waterValid(){
+        if(type == null) return false;
         return type.maxWater > waterLevel && waterLevel > type.minWater;
     }
 }
