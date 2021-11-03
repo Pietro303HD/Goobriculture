@@ -12,13 +12,12 @@ public class AgricultureBlocks implements ContentList {
     public void load() {
         farmland = new Farmland("farmland");
         sprinklerSmall = new Waterer("small-sprinkler", 60f, 1.5f){{
-            consumes.power(0.2f);
-            consumes.liquid(Liquids.water, 0.2f);
+            consumes.power(0.1f);
+            consumes.liquid(Liquids.water, 0.15f);
         }};
-        harvester = new Harvester("harvester", 10){{
-            consumes.power(0.2f);
+        harvester = new RailHarvester("harvester", 10){{
+            consumes.power(1f);
             itemCapacity = 60;
-            size = 3;
         }};
         sensorSmall = new WaterSensor("small-water-sensor", 60f){{
             consumes.power(0.5f);
