@@ -10,6 +10,7 @@ import mindustry.content.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import mindustry.logic.*;
 
 public class RailHarvester extends ConnectedBlock {
     public TextureRegion railRegion, headRegion;
@@ -141,6 +142,14 @@ public class RailHarvester extends ConnectedBlock {
             Draw.rect(region, x, y);
             Draw.z(Layer.blockOver + 2);
             Draw.rect(headRegion, headX, headY);
+        }
+
+        @Override
+        public double sense(LAccess sensor) {
+            if(sensor == LAccess.totalItems){
+                return (double) items.total();
+            }
+            return super.sense(sensor);
         }
 
         public boolean valid(){
