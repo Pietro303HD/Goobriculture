@@ -1,6 +1,7 @@
 package agriculture.entities;
 
 import agriculture.content.*;
+import arc.*;
 import arc.util.*;
 import mindustry.type.*;
 
@@ -18,8 +19,8 @@ public class PlantType {
 
     public String name;
 
-    public PlantType(String name, Item item, int itemAmount){
-        this.name = name;
+    public PlantType(Item item, int itemAmount){
+        this.name = Core.bundle.get("plant." + item.toString() + ".name");
         this.item = item;
         this.itemAmount = itemAmount;
 
